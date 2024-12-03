@@ -26,7 +26,7 @@ def part_1(vals: list) -> bool:
 def part_2(vals: list) -> bool:
     deltas = f(vals)
     absdeltas = map(abs, deltas)
-    if max(absdeltas) > 3 or min(deltas) == 0 or not len(set(mapl(sign, deltas))) ==1:
+    if max(absdeltas) > 3 or min(deltas) == 0 or not len(set(mapl(sign, deltas))) == 1:
         for i in range(len(vals)):
             new_vals = list(vals)
             new_vals.pop(i)
