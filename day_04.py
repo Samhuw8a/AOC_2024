@@ -52,9 +52,9 @@ def part_2() -> int:
     for i in range(1, len(input) - 1):
         for j in range(1, len(input[0]) - 1):
             if input[i][j] == "A":
-                vals = mapl(lambda x: input[x[0]+i][x[1]+j], ecken(i, j))
-                if vals.count("M")==2 and vals.count("S") ==2 and not vals[0]==vals[-1]:
-                    tot +=1
+                vals = mapl(lambda x: input[x[0] + i][x[1] + j], ecken(i, j))
+                if vals.count("M") == 2 and vals.count("S") == 2 and not vals[0] == vals[-1]:
+                    tot += 1
 
     return tot
 
