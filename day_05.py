@@ -29,14 +29,6 @@ def correct(update: list) -> bool:
     return in_order
 
 
-def part_1() -> int:
-    tot = 0
-    for update in updates:
-        if correct(update):
-            tot += middle(update)
-    return tot
-
-
 def change(update: list) -> list:
     for i in range(len(update)):
         after = update[i + 1:]
@@ -50,9 +42,15 @@ def change(update: list) -> list:
     return update
 
 
+def part_1() -> int:
+    corrects = filter(correct, updates)
+    middles = map(middle, corrects)
+    return sum(middles)
+
+
 def part_2() -> int:
-    incorrect = list(filter(lambda x: not correct(x), updates))
-    changed = list(map(change, incorrect))
+    incorrect = filter(lambda x: not correct(x), updates)
+    changed = map(change, incorrect)
     middles = map(middle, changed)
     return sum(middles)
 
