@@ -63,6 +63,23 @@ def part_1() -> int:
     return len(seen)
 
 
+def sim_until_loop(grid: dict, start):
+    seen = set()
+    chord = start
+    vect = (-1, 0)
+    while chord in grid.keys():
+        if (chord,vect) in seen:
+            return True
+        nxt = inc(chord, vect)
+        if grid.get(nxt, "") == "#":
+            vect = rotate_choords_90(vect)
+        else:
+            seen.add((chord,vect))
+            chord = nxt
+
+    return False
+
+
 def part_2() -> int:
     seen: set = set()
     obst: set = set()
@@ -73,14 +90,10 @@ def part_2() -> int:
         if G.get(nxt, "") == "#":
             vect = rotate_choords_90(vect)
         else:
-            for c, v in seen:
-                if is_on_line(chord, c, v) and v == rotate_choords_90(vect):
-                    n = inc(chord, vect)
-                    if n != start:
-                        obst.add(n)
-                        input[n[0]][n[1]] = "O"
-                        break
-
+            g = G.copy()
+            g[chord] = "#"
+            if sim_until_loop(g, start):
+                obst.add(chord)
             seen.add((chord, vect))
             chord = nxt
 
