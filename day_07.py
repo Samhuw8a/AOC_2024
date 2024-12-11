@@ -35,6 +35,7 @@ def solve2(result: int, nums: list) -> bool:
     con = False
     if result % num == 0:
         two = solve2(result // num, nums)
+
     if str(result).endswith(str(num)) and len(str(result)) > len(str(num)):
         nres = int(str(result)[:-len(str(num))])
         con = solve2(nres, nums)
