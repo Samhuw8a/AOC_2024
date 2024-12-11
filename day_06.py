@@ -68,13 +68,13 @@ def sim_until_loop(grid: dict, start):
     chord = start
     vect = (-1, 0)
     while chord in grid.keys():
-        if (chord,vect) in seen:
+        if (chord, vect) in seen:
             return True
         nxt = inc(chord, vect)
         if grid.get(nxt, "") == "#":
             vect = rotate_choords_90(vect)
         else:
-            seen.add((chord,vect))
+            seen.add((chord, vect))
             chord = nxt
 
     return False
